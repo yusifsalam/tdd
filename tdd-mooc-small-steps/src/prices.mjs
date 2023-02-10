@@ -26,13 +26,8 @@ function createApp(database) {
 
   function parseDate(dateString) {
     if (dateString) {
-      return new Date(dateString);
+      return Temporal.PlainDate.from(dateString);
     }
-  }
-
-  function convert(date) {
-    if (date)
-      return date.toTemporalInstant().toZonedDateTimeISO("UTC").toPlainDate();
   }
 
   function calculateCost(age, type, date, baseCost) {
@@ -75,7 +70,7 @@ function createApp(database) {
 
   function calculateReduction(date) {
     let reduction = 0;
-    if (date && isMonday(convert(date)) && !isHoliday(convert(date))) {
+    if (date && isMonday(date) && !isHoliday(date)) {
       reduction = 35;
     }
     return reduction;
