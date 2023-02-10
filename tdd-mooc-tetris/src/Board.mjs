@@ -13,6 +13,10 @@ export class Board {
     ];
   }
 
+  drop(block) {
+    this.grid[0][1] = "X";
+  }
+
   toString() {
     return this.grid.map((row) => row.join("") + "\n").join("");
   }
