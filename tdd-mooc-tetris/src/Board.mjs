@@ -14,6 +14,7 @@ export class Board {
   }
 
   drop(block) {
+    if (this.grid[0][1] !== ".") throw new Error("already falling");
     this.grid[0][1] = "X";
   }
 
