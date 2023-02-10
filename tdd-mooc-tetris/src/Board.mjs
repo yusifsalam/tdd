@@ -17,6 +17,11 @@ export class Board {
     this.grid[0][1] = "X";
   }
 
+  tick() {
+    this.grid[0][1] = ".";
+    this.grid[1][1] = "X";
+  }
+
   toString() {
     return this.grid.map((row) => row.join("") + "\n").join("");
   }
