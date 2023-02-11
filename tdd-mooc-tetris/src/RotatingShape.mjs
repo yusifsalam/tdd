@@ -6,10 +6,10 @@ export class RotatingShape {
   }
 
   rotateRight() {
-    this.grid = this.grid.map((val, i) =>
+    const rotatedRight = this.grid.map((val, i) =>
       this.grid.map((row) => row[i]).reverse()
     );
-    return this.toString();
+    return rotatedRight.map((row) => row.join("") + "\n").join("");
   }
 
   toString() {
