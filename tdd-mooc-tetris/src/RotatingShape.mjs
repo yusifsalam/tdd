@@ -13,17 +13,10 @@ export class RotatingShape {
   }
 
   rotateLeft() {
-    const clone = structuredClone(this.grid);
-    clone[0][0] = this.grid[0][2];
-    clone[0][1] = this.grid[1][2];
-    clone[0][2] = this.grid[2][2];
-    clone[1][0] = this.grid[0][1];
-    clone[1][1] = this.grid[1][1];
-    clone[1][2] = this.grid[2][1];
-    clone[2][0] = this.grid[0][0];
-    clone[2][1] = this.grid[1][0];
-    clone[2][2] = this.grid[2][0];
-    return clone.map((row) => row.join("") + "\n").join("");
+    const rotatedLeft = this.grid.map((val, i) =>
+      this.grid.map((row) => row[row.length - 1 - i])
+    );
+    return rotatedLeft.map((row) => row.join("") + "\n").join("");
   }
 
   toString() {
