@@ -16,14 +16,9 @@ export class Board {
   }
 
   hasFalling() {
-    const allButBottomRowHaveFalling = this.grid
-      .slice(0, 2)
-      .flatMap((a) => a)
-      .some((e) => e !== ".");
-    const bottomRowHasFalling =
-      this.history[this.history.length - 2][this.grid.length - 1].join("") !==
-      this.grid[this.grid.length - 1].join("");
-    return allButBottomRowHaveFalling || bottomRowHasFalling;
+    return (
+      this.history[this.history.length - 2].toString() !== this.grid.toString()
+    );
   }
 
   drop(block) {
@@ -36,8 +31,10 @@ export class Board {
       for (let j = 0; j < this.grid[i].length; j++) {
         let cell = this.grid[i][j];
         if (cell !== "." && i < this.grid.length - 1) {
-          this.grid[i + 1][j] = this.grid[i][j];
-          this.grid[i][j] = ".";
+          if (this.grid[i + 1][j] === ".") {
+            this.grid[i + 1][j] = this.grid[i][j];
+            this.grid[i][j] = ".";
+          }
         }
       }
     }
