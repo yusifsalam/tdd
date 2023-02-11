@@ -19,8 +19,15 @@ export class Board {
   }
 
   tick() {
-    this.grid[0][1] = ".";
-    this.grid[1][1] = "X";
+    for (let i = this.grid.length - 1; i >= 0; i--) {
+      for (let j = 0; j < this.grid[i].length; j++) {
+        let cell = this.grid[i][j];
+        if (cell !== "." && i < this.grid.length - 1) {
+          this.grid[i + 1][j] = this.grid[i][j];
+          this.grid[i][j] = ".";
+        }
+      }
+    }
   }
 
   toString() {
