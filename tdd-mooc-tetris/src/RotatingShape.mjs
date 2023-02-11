@@ -1,15 +1,11 @@
 export class RotatingShape {
-  value;
+  grid;
 
   constructor(value) {
-    this.value = value
-      .split("\n")
-      .map((a) => a.trim())
-      .join("\n")
-      .concat("\n");
+    this.grid = value.split("\n").map((a) => a.trim().split(""));
   }
 
   toString() {
-    return this.value.toString();
+    return this.grid.map((row) => row.join("") + "\n").join("");
   }
 }
