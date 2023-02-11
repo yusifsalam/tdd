@@ -2,6 +2,7 @@ export class Board {
   width;
   height;
   grid;
+  history;
 
   constructor(width, height) {
     this.width = width;
@@ -11,6 +12,18 @@ export class Board {
       [".", ".", "."],
       [".", ".", "."],
     ];
+    this.history = [this.grid];
+  }
+
+  hasFalling() {
+    const allButBottomRowHaveFalling = this.grid
+      .slice(0, 2)
+      .flatMap((a) => a)
+      .some((e) => e !== ".");
+    const bottomRowHasFalling =
+      this.history[this.history.length - 2][this.grid.length - 1] ===
+      this.grid[this.grid.length - 1];
+    return allButBottomRowHaveFalling || bottomRowHasFalling;
   }
 
   drop(block) {
@@ -28,6 +41,7 @@ export class Board {
         }
       }
     }
+    this.history.push(this.grid);
   }
 
   toString() {
