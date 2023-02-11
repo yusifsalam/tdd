@@ -21,8 +21,8 @@ export class Board {
       .flatMap((a) => a)
       .some((e) => e !== ".");
     const bottomRowHasFalling =
-      this.history[this.history.length - 2][this.grid.length - 1] ===
-      this.grid[this.grid.length - 1];
+      this.history[this.history.length - 2][this.grid.length - 1].join("") !==
+      this.grid[this.grid.length - 1].join("");
     return allButBottomRowHaveFalling || bottomRowHasFalling;
   }
 
@@ -41,7 +41,7 @@ export class Board {
         }
       }
     }
-    this.history.push(this.grid);
+    this.history.push(structuredClone(this.grid));
   }
 
   toString() {
