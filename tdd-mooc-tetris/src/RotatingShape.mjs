@@ -9,16 +9,13 @@ export class RotatingShape {
     const rotatedRight = this.#grid
       .map((_, i) => this.#grid.map((row) => row[i]).reverse())
       .map((row) => row.join("") + "\n")
-      .join("");
-    return new RotatingShape(rotatedRight.slice(0, rotatedRight.length - 1));
+      .join("")
+      .slice(0, this.#grid.length * (this.#grid.length + 1) - 1);
+    return new RotatingShape(rotatedRight);
   }
 
   rotateLeft() {
-    const rotatedLeft = this.#grid
-      .map((_, i) => this.#grid.map((row) => row[row.length - 1 - i]))
-      .map((row) => row.join("") + "\n")
-      .join("");
-    return new RotatingShape(rotatedLeft.slice(0, rotatedLeft.length - 1));
+    return this.rotateRight().rotateRight().rotateRight();
   }
 
   toString() {
