@@ -41,4 +41,5 @@ export class Tetromino {
       new RotatingShape("..I..\n..I..\n..I..\n..I..\n....."),
     ]);
   }
+  static O_SHAPE = new Tetromino(0, [new RotatingShape(".OO\n.OO\n...")]);
 }
